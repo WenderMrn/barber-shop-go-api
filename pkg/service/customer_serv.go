@@ -71,8 +71,11 @@ func (ctrl *CustomerServ) Update(c echo.Context) (err error) {
 		return c.JSON(http.StatusBadRequest, data)
 	}
 
-	err = customerCtrl.Create(&customer)
-	if err != nil {
+	err = customerCtrl.Update(&customer)
+	if err == gorm.ErrRecordNotFound {
+		data["message"] = "Customer not found"
+		return c.JSON(http.StatusNotFound, data)
+	} else if err != nil {
 		data["message"] = err.Error()
 		return c.JSON(http.StatusInternalServerError, data)
 	}

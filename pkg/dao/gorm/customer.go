@@ -33,14 +33,17 @@ func (c *CustomerDAO) Create(u *model.Customer) error {
 
 //Update a Customer
 func (c *CustomerDAO) Update(u *model.Customer) error {
-	return dbo.Update(&u).Error
+	_, err := c.FindByID(u.ID)
+	if err != nil {
+		return err
+	}
+	return dbo.Save(&u).Error
 }
 
 //FindByID a Customer
 func (c *CustomerDAO) FindByID(ID uint64) (*model.Customer, error) {
 	customer := model.Customer{}
-	err := dbo.Find(&customer, ID).Error
-	return &customer, err
+	return &customer, dbo.Find(&customer, ID).Error
 }
 
 //Delete a Customer

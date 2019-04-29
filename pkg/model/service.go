@@ -6,7 +6,7 @@ import (
 
 //Service model
 type Service struct {
-	ID          uint    `json:"id" gorm:"primary_key"`
+	ID          uint64  `json:"id" gorm:"primary_key"`
 	Title       string  `json:"title"`
 	Description string  `json:"description"`
 	UnitPrice   float64 `json:"unit_price"`
@@ -23,17 +23,17 @@ type Service struct {
 
 //ServiceOrder model
 type ServiceOrder struct {
-	ID          uint      `json:"id" gorm:"primary_key"`
+	ID          uint64    `json:"id" gorm:"primary_key"`
 	Status      string    `json:"status"`
 	Quantity    int       `json:"quantity"`
 	Observation string    `json:"observation"`
 	PaymentDate time.Time `json:"payment_date"`
 	TotalPrice  float64   `json:"total_price"`
 
-	BarberID uint
+	BarberID uint64
 	Barber   User `json:"barber"`
 
-	CustomerID uint
+	CustomerID uint64
 	Customer   User `json:"customer"`
 
 	Services []Service `json:"services" gorm:"many2many:service_order_service"`
