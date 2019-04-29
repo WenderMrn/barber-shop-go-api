@@ -10,3 +10,8 @@ type IGenericDAO interface {
 	Commit() error
 	Rollback() error
 }
+
+//DAO struct
+type DAO struct {
+	IGenericDAO
+}

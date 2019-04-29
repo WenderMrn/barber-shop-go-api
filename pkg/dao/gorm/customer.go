@@ -1,8 +1,6 @@
 package gorm
 
 import (
-	"fmt"
-
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/gommon/log"
 	"github.com/wendermrn/barber-shop-go-api/pkg/dao"
@@ -14,11 +12,10 @@ var dbo *gorm.DB
 
 //CustomerDAO struct
 type CustomerDAO struct {
-	dao.IGenericDAO
+	dao.DAO
 }
 
 func init() {
-	fmt.Println("sakjskajska")
 	if dbo == nil {
 		d, err := database.GetDBG()
 		if err != nil {
@@ -29,14 +26,24 @@ func init() {
 	}
 }
 
-//Create create a Customer
+//Create a Customer
 func (c *CustomerDAO) Create(u *model.Customer) error {
-	return dbo.Create(&u).Error
+	return dbo.Save(&u).Error
 }
 
-//FindByID create a Customer
-func (c *CustomerDAO) FindByID(ID uint) (*model.Customer, error) {
+//Update a Customer
+func (c *CustomerDAO) Update(u *model.Customer) error {
+	return dbo.Update(&u).Error
+}
+
+//FindByID a Customer
+func (c *CustomerDAO) FindByID(ID uint64) (*model.Customer, error) {
 	customer := model.Customer{}
 	err := dbo.Find(&customer, ID).Error
 	return &customer, err
+}
+
+//Delete a Customer
+func (c *CustomerDAO) Delete(u *model.Customer) error {
+	return dbo.Delete(&u).Error
 }

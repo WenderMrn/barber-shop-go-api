@@ -12,4 +12,7 @@ func Setup(e *echo.Echo) {
 	customerServ := service.CustomerServ{}
 	groupCustomers := e.Group("/customers")
 	groupCustomers.POST("", customerServ.Create)
+	groupCustomers.PUT("", customerServ.Update)
+	groupCustomers.GET("/:id", customerServ.Get)
+	groupCustomers.DELETE("/:id", customerServ.Delete)
 }
