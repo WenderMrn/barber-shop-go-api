@@ -1,11 +1,11 @@
 package gorm
 
 import (
-	"github.com/jinzhu/gorm"
 	"github.com/labstack/gommon/log"
 	"github.com/wendermrn/barber-shop-go-api/pkg/dao"
 	"github.com/wendermrn/barber-shop-go-api/pkg/database"
 	"github.com/wendermrn/barber-shop-go-api/pkg/model"
+	"gorm.io/gorm"
 )
 
 var dbo *gorm.DB

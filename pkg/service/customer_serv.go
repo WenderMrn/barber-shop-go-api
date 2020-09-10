@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/jinzhu/gorm"
-	"github.com/labstack/echo"
+	echo "github.com/labstack/echo/v4"
 	"github.com/wendermrn/barber-shop-go-api/pkg/controller"
 	"github.com/wendermrn/barber-shop-go-api/pkg/model"
+	"gorm.io/gorm"
 )
 
 //CustomerServ service struct
