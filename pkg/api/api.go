@@ -20,5 +20,5 @@ func Run(ctx context.Context) error {
 	// Configura as rotas da api
 	route.Setup(e)
 
-	return e.Start(net.JoinHostPort("localhost", "3001"))
+	return e.Start(net.JoinHostPort("localhost", "3003"))
 }
